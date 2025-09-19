@@ -1,11 +1,8 @@
 # EyeInside
 An Image Search Engine based on YOLO.
 
-**PLANNED ISSUES**  
+**WHAT IS EYEINSIDE?**
 
--YOLO model has 7 classes right now. It will be rearranged. COCO and ImageNet datasets will be added (at least I plan to do it)  
--SpaCy needs to be retrained.  
--GUI will be developed. Images which have detected objects will be shown on the GUI.  
+EyeInside is a YOLO-based image search engine. EyeInside looks for what you search for in image files i.e jpg and png files and then shows you images which it finds.
 
-I am still developing this project. Even YOLO and SpaCy models are needed to train better, the SpaCy-based NLP model can get your query and then YOLO model can detect what you search for. 
-This GitHub repository is being updated day by day. Stay tuned.
+EyeInside also can count number of people in an image. You can click "Count person" box and enter the number to the number box. Then EyeInside looks at images, count number of person on each imagess and finally gives you the image that includes the number, that you enter, of the person.
