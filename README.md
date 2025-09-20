@@ -14,4 +14,12 @@ EyeInside also can count number of people in an image. You can click "Count pers
 
 3. Select YOLO model that you want to run.
 
+![Alt text](readme_images/image2.png)
+
 4. Press the "Search" Button
+
+![Alt text](readme_images/image3.png)
+
+If you want to search for an image which includes a certain number of person, click the "Count Person" tickbox and then enter the number.
+
+![Alt text](readme_images/image4.png)
