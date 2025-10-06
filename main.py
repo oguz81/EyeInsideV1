@@ -1,16 +1,43 @@
-#08.01.2025
-# This is the first version of the EyeInside project. 
-# EyeInside takes your query and returns the photos you are looking for.
-# You just have to describe the photo you are looking for. Then a YOLO model searches photos in the folder.
-# Finally the most relevant photos are displayed.
-#from msilib.schema import File
+# 06.10.2025
+
+# EYEINSIDE
+
+# EyeInside project. 
+# Created by Oguz Demirtas
+# https://github.com/oguz81/EyeInsideV1
+
+# 2025 
+
+# MIT License
+
+# Copyright (c) 2025 Oğuz DEMİRTAŞ
+
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
+
+
 
 import tkinter as tk
 import os
 #os.environ["KMP_DUPLICATE_LIB_OK"]="TRUE" 
 import cv2
-import matplotlib.pyplot as plt
-from numpy import number
+
 from ultralytics import YOLO
 from PIL import Image, ImageTk
 from tkinter import ttk
@@ -46,7 +73,7 @@ def searchExecution():
     userQuery = query.get()
     directory = filePath.get()
     copiedDirectory = directory + "\\copiedImages"
-    selectedYoloModel = selectedModel.get()
+    selectedYoloModel = "C:\\Program Files\\EyeInside\\YOLOmodels\\" + selectedModel.get()
     yoloModel = YOLO(selectedYoloModel)
    
     
@@ -61,7 +88,7 @@ def searchExecution():
             raise FileNotFoundError(f"Directory not found: {directory}")
         else:
             yoloClassNames = list(yoloModel.names.values())
-            print("ALLO",yoloClassNames)  # class names from selected YOLO model
+         
             for filename in os.listdir(directory):
                 if filename.endswith(".jpg") or filename.endswith(".png"):
                     detections = yoloModel(directory + "\\" + filename)
@@ -79,6 +106,7 @@ def searchExecution():
                         print("Type of numberOfPerson:", type(numberOfPerson))
                         print("Type of countedPerson:", type(countedPerson))
                         if countedPerson == int(numberOfPerson):
+                            detectionCounter += 1
                             print("This image has", countedPerson, " person.")
                             ImagePath = os.path.join(directory, filename)
                             small_images(frame, ImagePath, filename)
@@ -119,7 +147,7 @@ def countPersonFunc():
     else:
         numberBox.place_forget()
 
-yoloModelFolderPath = "C:\\Users\\HP\\Desktop\\YOLOmodels"
+yoloModelFolderPath = "C:\\Program Files\\EyeInside\\YOLOmodels"
 yoloModels = os.listdir(yoloModelFolderPath)
 print("Available YOLO models:")
 for model in yoloModels:
@@ -189,23 +217,8 @@ searchResultsLabel.place(x=20, y=480)
 searchResults = tk.Label(window, text="",font=("Helvetica", 10), bg='white')
 searchResults.place(x=20, y=520)
 
-# Model paths
-spaCyDirectory = "C:\\Users\\HP\\spacy_eyeinside_v1"
-YOLO_MODEL = "C:\\Users\\HP\\Downloads\\eyeinside_v1_alldataset.pt"
 
-# Check if the SpaCy model and YOLO model exist
-try:
-    if not os.path.exists(YOLO_MODEL):
-        raise FileNotFoundError(f"YOLO model not found on this directory: {YOLO_MODEL}")
-    else:
-  # YOLO model loading
-     
-        #yolo = YOLO(YOLO_MODEL)
-        searchButton = tk.Button(window, text='Search',font=("Helvetica", 15), bg='gray', command=searchExecution)
-except FileNotFoundError as e:
-    searchResults.config(text=f"Error: {e}")
-    searchButton = tk.Button(window, text='Search',font=("Helvetica", 15), bg='gray', state='disabled') # if models do not exist, the search button is disabled
-
+searchButton = tk.Button(window, text='Search',font=("Helvetica", 15), bg='gray', command=searchExecution)
 searchButton.place(x=280, y=303)
 
 # Image Results label
