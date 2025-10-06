@@ -1,3 +1,5 @@
+*Download EyeInside [now](https://github.com/oguz81/EyeInsideV1/releases) for Windows.*
+-
 # EyeInside
 An Image Search Engine based on YOLO.
 
