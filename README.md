@@ -25,3 +25,12 @@ EyeInside also can count number of people in an image. You can click "Count pers
 If you want to search for an image which includes a certain number of person, click the "Count Person" tickbox and then enter the number.
 
 ![Alt text](readme_images/image4.png)
+
+**NOTES**
+- When you install EyeInside, it has five YOLO 8 models: nano, small, medium, large and xlarge. You can use another YOLO models and also the model you trained. To do this, put the model into "YOLOmodels" folder in Program Files/EyeInside. After restart EyeInside, the new model will be seen in the model select menu.
+  
+- When you run EyeInside very first time on your PC, it may be slow to start. Because it has all required Python environment inside to run. I will fix it later. Believe me.
+  
+- EyeInside can't detect objects that YOLO doesn't know. I will add a feature that the objects YOLO knows can be listed.
+  
+- Don't hesitate to send your feedbacks, opinions and bugs you find --> ouzdemirtas@hotmail.com
